@@ -1,3 +1,10 @@
+---
+layout: default
+title: Security Policy
+description: Educational purpose statement and responsible disclosure policy
+permalink: /security/
+---
+
 # Security Policy
 
 ## 🛡️ Educational Purpose Statement
