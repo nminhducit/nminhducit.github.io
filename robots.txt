@@ -1,0 +1,41 @@
+User-agent: *
+Allow: /
+Disallow: /assets/
+Disallow: /_includes/
+Disallow: /_layouts/
+Disallow: /404.html
+
+# Sitemap location
+Sitemap: https://nminhducit.github.io/sitemap.xml
+
+# Crawl delay 
+Crawl-delay: 1
+
+# Google bots
+User-agent: Googlebot
+Allow: /
+Allow: /assets/css/
+Allow: /assets/js/
+
+User-agent: Googlebot-Image
+Allow: /assets/images/
+
+# Bing bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yandex bot
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+# Bad bots (block spam crawlers)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /

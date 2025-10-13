@@ -1,0 +1,157 @@
+---
+layout: default
+---
+
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="readingProgress" role="progressbar" aria-label="Reading progress"></div>
+<!-- Post Article -->
+<article class="blog-post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="container">
+        <div class="blog-post__container">
+            <!-- Post Header -->
+            <header class="blog-post__header">
+                <a href="{{ '/blog' | relative_url }}" class="blog-post__back-link">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Back to Blog
+                </a>
+                <div class="blog-post__meta-header">
+                    <a href="{{ '/blog' | relative_url }}?category={{ page.category | url_encode }}" 
+                       class="blog-post__category" 
+                       title="View all posts in {{ page.category }}">
+                        {{ page.category }}
+                    </a>
+                    <span class="blog-post__divider">•</span>
+                    <time class="blog-post__date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                        {{ page.date | date: "%B %d, %Y" }}
+                    </time>
+                    <span class="blog-post__divider">•</span>
+                    <span class="blog-post__reading-time">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                            <path stroke-linecap="round" stroke-width="2" d="M12 6v6l4 2"/>
+                        </svg>
+                        {{ page.reading_time }} min read
+                    </span>
+                </div>
+                <h1 class="blog-post__title" itemprop="headline">{{ page.title }}</h1>
+                {% if page.excerpt %}
+                <p class="blog-post__excerpt" itemprop="description">
+                    {{ page.excerpt | strip_html | strip_newlines | truncate: 200 }}
+                </p>
+                {% endif %}
+                {% if page.tags %}
+                <div class="blog-post__tags">
+                    {% for tag in page.tags %}
+                    <span class="blog-post__tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </header>
+            <!-- Post Content -->
+            <div class="blog-post__content" itemprop="articleBody">
+                {{ content }}
+            </div>
+            <!-- Post Footer -->
+            <footer class="blog-post__footer">
+                <!-- Share Section -->
+                <div class="blog-post__share-section">
+                    <h3 class="blog-post__share-title">Share this article</h3>
+                    <div class="blog-post__share-buttons">
+                        <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url | url_encode }}&text={{ page.title | url_encode }}" 
+                           class="blog-post__share-btn blog-post__share-btn--twitter" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Share on Twitter">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url | url_encode }}" 
+                           class="blog-post__share-btn blog-post__share-btn--linkedin" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Share on LinkedIn">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+                            </svg>
+                            <span>LinkedIn</span>
+                        </a>
+                        <button class="blog-post__share-btn blog-post__share-btn--copy" 
+                                id="copyLinkButton" 
+                                type="button"
+                                aria-label="Copy link to clipboard">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                            <span id="copyLinkText">Copy Link</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Post Navigation -->
+                <nav class="blog-post__navigation" aria-label="Post navigation">
+                    {% if page.previous.url %}
+                    <a href="{{ page.previous.url | relative_url }}" 
+                       class="blog-post__nav-card blog-post__nav-card--prev" 
+                       rel="prev">
+                        <span class="blog-post__nav-label">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                            Previous Post
+                        </span>
+                        <span class="blog-post__nav-title">{{ page.previous.title }}</span>
+                    </a>
+                    {% else %}
+                    <div></div>
+                    {% endif %}
+                    {% if page.next.url %}
+                    <a href="{{ page.next.url | relative_url }}" 
+                       class="blog-post__nav-card blog-post__nav-card--next" 
+                       rel="next">
+                        <span class="blog-post__nav-label">
+                            Next Post
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                        <span class="blog-post__nav-title">{{ page.next.title }}</span>
+                    </a>
+                    {% endif %}
+                </nav>
+            </footer>
+        </div>
+    </div>
+</article>
+<style>
+/* Hide default scrollbar on all browsers */body,html{scrollbar-width:none;-ms-overflow-style:none}
+/* Hide scrollbar on Chrome, Safari, and other WebKit-based browsers */body::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
+/* Reading Progress Bar */.reading-progress{position:fixed;left:0;right:0;height:3px;background:var(--accent);transform-origin:left;transform:scaleX(0);z-index:90;transition:transform .1s ease-out}
+/* Blog Post Container */.blog-post{padding:4rem 0 6rem;position:relative;z-index:1}.blog-post__container{max-width:820px;margin:0 auto}
+/* POST HEADER */.blog-post__header{position:relative;margin-bottom:4rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border)}.blog-post__category,.blog-post__tag{padding:.4rem 1rem;font-family:'JetBrains Mono',monospace}.blog-post__back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);text-decoration:none;font-size:.95rem;font-weight:500;margin-bottom:2rem;transition:.2s}.blog-post__back-link:hover{color:var(--accent);gap:.75rem}.blog-post__back-link svg{transition:transform .2s}.blog-post__back-link:hover svg{transform:translateX(-3px)}.blog-post__meta-header{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem;margin-bottom:1.5rem;font-size:.9rem}.blog-post__category{display:inline-block;background:rgba(0,217,255,.1);color:var(--accent);border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;border:1px solid rgba(0,217,255,.2);text-decoration:none}.blog-post__divider{color:var(--text-muted);opacity:.5}.blog-post__date,.blog-post__reading-time{color:var(--text-muted);display:inline-flex;align-items:center;gap:.4rem}.blog-post__title{font-size:clamp(2rem, 5vw, 3.2rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem;color:var(--text);letter-spacing:-.02em}.blog-post__excerpt{font-size:1.2rem;line-height:1.7;color:var(--text-muted);margin-bottom:2rem}.blog-post__tags{display:flex;flex-wrap:wrap;gap:.6rem}.blog-post__tag{background:var(--bg-elevated);color:var(--text-muted);border-radius:20px;font-size:.85rem;border:1px solid var(--border);transition:.2s}.blog-post__tag:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+/* POST CONTENT */.blog-post__content{font-size:1.125rem;line-height:1.8;color:var(--text)}
+/* Headings */.blog-post__content h2{font-size:2rem;font-weight:700;margin-top:3.5rem;margin-bottom:1.25rem;color:var(--text);line-height:1.3;scroll-margin-top:100px}.blog-post__content h2::before{content:'# ';color:var(--accent);margin-right:.5rem;font-family:'JetBrains Mono',monospace}.blog-post__content h3{font-size:1.6rem;font-weight:600;color:var(--text);line-height:1.4;scroll-margin-top:100px}.blog-post__content h3::before{content:'## ';color:var(--accent);margin-right:.5rem;font-family:'JetBrains Mono',monospace}.blog-post__content h4{font-size:1.3rem;font-weight:600;margin-top:2.5rem;margin-bottom:.875rem;color:var(--accent);line-height:1.5;scroll-margin-top:100px}
+/* Paragraphs & Text */.blog-post__content p{margin-bottom:1.75rem;line-height:1.8}.blog-post__content a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,217,255,.3);transition:.2s}.blog-post__content a:hover{border-bottom-color:var(--accent);color:var(--accent-dim)}.blog-post__content strong{color:var(--accent);font-weight:600}
+/* Lists */.blog-post__content ol,.blog-post__content ul{margin:1.75rem 0;padding-left:2rem}.blog-post__content li{line-height:1.75}.blog-post__content li::marker{color:var(--accent);font-weight:600}
+/* Code */.blog-post__content code{font-family:'JetBrains Mono',monospace;font-size:.9em;background:rgba(0,217,255,.08);color:var(--accent);padding:.25rem .5rem;border-radius:4px;border:1px solid rgba(0,217,255,.15)}.blog-post__content pre{background:var(--bg-elevated);border:1px solid var(--border);border-radius:10px;padding:1.75rem;overflow-x:auto;margin:2.5rem 0;position:relative}.blog-post__content pre code{background:0 0;border:none;padding:0;color:var(--text);font-size:.95rem;line-height:1.6}
+/* Blockquotes */.blog-post__content blockquote{border-left:4px solid var(--accent);padding:1.25rem 1.75rem;margin:2.5rem 0;background:rgba(0,217,255,.05);border-radius:0 10px 10px 0;font-style:italic;color:var(--text-muted)}.blog-post__content blockquote p:last-child{margin-bottom:0}
+/* Images */.blog-post__content img{max-width:100%;height:auto;border-radius:10px;margin:2.5rem 0;display:block;border:1px solid var(--border)}
+/* Tables */.blog-post__content table{width:100%;border-collapse:collapse;margin:2.5rem 0;border:1px solid var(--border);border-radius:10px;overflow:hidden}.blog-post__content td,.blog-post__content th{border:1px solid var(--border);padding:.875rem 1.25rem;text-align:left}.blog-post__content th{background:rgba(0,217,255,.08);font-weight:600;color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:.95rem}.blog-post__content td{background:var(--bg-elevated)}
+/* POST FOOTER */.blog-post__footer{margin-top:5rem;padding-top:3rem;border-top:1px solid var(--border)}
+/* Share Section */.blog-post__share-section{margin-bottom:3.5rem}.blog-post__share-title{font-size:1.4rem;font-weight:600;margin-bottom:1.25rem;color:var(--text)}.blog-post__share-buttons{display:flex;gap:1rem;flex-wrap:wrap}.blog-post__share-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.875rem 1.75rem;border:1px solid var(--border);border-radius:10px;background:var(--bg-elevated);color:var(--text-muted);text-decoration:none;font-size:.95rem;font-weight:500;transition:.3s;cursor:pointer}.blog-post__share-btn:hover{border-color:var(--accent);background:rgba(0,217,255,.05);color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 16px rgba(0,0,0,.3)}.blog-post__share-btn svg{flex-shrink:0}
+/* Post Navigation */.blog-post__navigation{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}.blog-post__nav-card{display:flex;flex-direction:column;gap:.75rem;padding:1.75rem;background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;text-decoration:none;transition:.3s}.blog-post__nav-card:hover{border-color:var(--accent);background:rgba(0,217,255,.03);transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.3)}.blog-post__nav-card--prev{text-align:left}.blog-post__nav-card--next{text-align:right}.blog-post__nav-label{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.5px}.blog-post__nav-card--next .blog-post__nav-label{justify-content:flex-end}.blog-post__nav-title{font-size:1.1rem;font-weight:600;color:var(--text);line-height:1.4}
+/*   RESPONSIVE DESIGN  */@media (max-width:768px){.blog-post{padding:2.5rem 0 4rem}.blog-post__header{margin-bottom:3rem;padding-bottom:2rem}.blog-post__title{font-size:2rem}.blog-post__excerpt{font-size:1.1rem}.blog-post__content{font-size:1.05rem}.blog-post__content h2{font-size:1.75rem;margin-top:2.5rem}.blog-post__content h3{font-size:1.4rem;margin-top:2rem}.blog-post__content h4{font-size:1.2rem}.blog-post__content pre{padding:1.25rem;margin:2rem 0}.blog-post__share-buttons{flex-direction:column}.blog-post__share-btn{width:100%;justify-content:center}.blog-post__navigation{grid-template-columns:1fr}.blog-post__nav-card--next .blog-post__nav-label{justify-content:flex-start}.blog-post__nav-card--next{text-align:left}}@media (max-width:480px){.blog-post{padding:2rem 0 3rem}.blog-post__title{font-size:1.75rem}.blog-post__meta-header{font-size:.85rem}.blog-post__content{font-size:1rem}.blog-post__content h2{font-size:1.5rem}.blog-post__content h3{font-size:1.25rem}}
+</style>
+<script>
+(function() {
+    'use strict';
+    // Reading Progress Bar
+    const progressBar=document.getElementById("readingProgress");if(progressBar){let e=!1;function t(){let t=window.pageYOffset||document.documentElement.scrollTop,r=document.documentElement.scrollHeight-document.documentElement.clientHeight;progressBar.style.transform="scaleX("+(r>0?t/r:0)+")",e=!1}window.addEventListener("scroll",function(){e||(window.requestAnimationFrame(t),e=!0)},{passive:!0}),t()}
+    // Copy Link Button
+    const copyBtn=document.getElementById("copyLinkButton");if(copyBtn){let t=document.getElementById("copyLinkText");copyBtn.addEventListener("click",async function(){try{await navigator.clipboard.writeText("{{ page.url | absolute_url }}"),t.textContent="Copied!",copyBtn.style.borderColor="var(--success)",copyBtn.style.color="var(--success)",setTimeout(function(){t.textContent="Copy Link",copyBtn.style.borderColor="",copyBtn.style.color=""},2500)}catch(e){t.textContent="Failed",setTimeout(function(){t.textContent="Copy Link"},2e3)}})}
+    // Smooth scroll with header offset for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function(e){e.addEventListener("click",function(e){let t=this.getAttribute("href");if("#"===t)return;let r=document.querySelector(t);if(r){e.preventDefault();let o=r.getBoundingClientRect().top,l=o+window.pageYOffset-100;window.scrollTo({top:l,behavior:"smooth"})}})});
+})();
+</script>

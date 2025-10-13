@@ -1,0 +1,130 @@
+# Site settings
+title: Duc Nguyen - Cyber Security Portfolio
+description: 3rd-year Information Security student specializing in malware analysis, reverse engineering, and blue team operations. Building secure systems through hands-on cybersecurity labs.
+url: "https://nminhducit.github.io"
+baseurl: ""
+
+# Author
+author:
+  name: Duc Nguyen
+  email: nminhducit@gmail.com
+  github: nminhducit
+  linkedin: nminhducit
+  twitter: nminhducit
+  tryhackme: nminhducit
+  bio: "Cybersecurity student passionate about malware analysis, reverse engineering, and SOC operations. Currently pursuing Security+ and ISC2 certifications."
+  location: "Hanoi, Vietnam"
+  avatar: "/assets/images/avatar.jpg" # Thêm avatar cho rich snippets
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+# Pagination
+paginate: 9
+paginate_path: "/blog/page/:num/"
+
+# Kramdown settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+
+# Exclude files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - .git
+  - .gitignore
+  - package.json
+  - package-lock.json
+  - LICENSE
+  - Rakefile
+
+# Include files
+include:
+  - _pages
+  - .htaccess
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      reading_time: 10
+      author: "Duc Nguyen"
+      comments: false
+      share: true
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-redirect-from
+
+# Feed settings
+feed:
+  path: feed.xml
+  excerpt_only: false
+
+# SEO settings (cho jekyll-seo-tag)
+lang: en_US
+timezone: Asia/Ho_Chi_Minh
+
+twitter:
+  username: nminhducit
+  card: summary_large_image
+
+facebook:
+  publisher: https://facebook.com/nminhducit
+
+logo: /assets/images/logo.png
+
+social:
+  name: Duc Nguyen
+  links:
+    - https://github.com/nminhducit
+    - https://linkedin.com/in/nminhducit
+    - https://twitter.com/nminhducit
+
+# Google Analytics (thêm tracking)
+google_analytics: G-L93FFEXNFG
+google_site_verification: G0PglQU6PUh58bl3h3N_5hFHbSX0LIKcvw
+
+# Performance optimizations
+sass:
+  style: compressed
+
+liquid:
+  error_mode: warn
+  strict_filters: false
+  strict_variables: false
+
+# Webmaster verifications
+webmaster_verifications:
+  google: "your-google-verification"
+  bing: "your-bing-verification"
+  alexa: "your-alexa-verification"
+  yandex: "your-yandex-verification"
+
+# Default image for social sharing
+defaults_image: /assets/images/og-image.jpg
