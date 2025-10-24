@@ -9,22 +9,30 @@ author: "Nguyễn Minh Đức"
 
 description: "A step-by-step breakdown of how websites work — from typing a URL to seeing a rendered interface, including DNS, TLS, WAF, and load balancing explained in simple terms."  
 excerpt: "Ever wondered what happens when you type a website URL? Here’s a clear, security-focused walkthrough of every step that brings a webpage to life."  
+# Social Media Images
+image: /assets/images/posts/.jpg
+og_image: /assets/images/posts/.jpg
+twitter_image: /assets/images/posts/.jpg
+
 tags:
-- Web Security
-- Networking
-- DNS
-- HTTPS
-- TLS
-- Load Balancer
-- WAF  
+   - Web Security
+   - Networking
+   - DNS
+   - HTTPS
+   - TLS
+   - Load Balancer
+   - WAF  
 
 keywords: "how website works, URL to webpage, DNS, TLS, HTTPS, load balancer, WAF, cybersecurity, web fundamentals"  
+
 schema_type: EducationalArticle  
 audience: beginner  
+
 lang: en  
-    comments: true  
-    share: true
+comments: true  
+share: true
 ---
+
 ## Introduction
 Every time you type a website address — like `https://example.com` — a fascinating chain of events unfolds behind the scenes.  
 Within milliseconds, your browser, operating system, and multiple servers across the internet collaborate to fetch and render a page.

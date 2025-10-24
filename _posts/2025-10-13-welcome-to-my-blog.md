@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Welcome to My Blog - Journey to Becoming a Penetration Tester"
-date: 2025-01-15
-last_modified_at: 2025-01-15
+date: 2025-10-15
+last_modified_at: 2025-10-15
 category: "Personal Journey"
 reading_time: 8
 author: "Duc Nguyen"
